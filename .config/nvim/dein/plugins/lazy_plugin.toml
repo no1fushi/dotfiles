@@ -1,0 +1,18 @@
+[[plugins]]
+on_ft = 'toml'
+repo = 'cespare/vim-toml'
+
+[[plugins]]
+repo = "ruby-formatter/rufo-vim"
+on_ft = "ruby"
+hook_add = '''
+let g:rufo_auto_formatting = 1
+'''
+
+[[plugins]]
+repo = "tpope/vim-endwise"
+on_ft = "ruby"
+
+[[plugins]]
+repo = "mindriot101/vim-yapf"
+on_ft = "python"

@@ -1,0 +1,90 @@
+# ColorScheme
+[[plugins]]
+repo = 'tomasr/molokai'
+hook_add = '''
+	colorscheme molokai
+	autocmd Colorscheme * highlight FullWidthSpace ctermbg=white
+	autocmd VimEnter * match FullWidthSpace /　/
+
+	set t_Co=256
+	syntax enable
+'''
+
+# LSP
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+on_i = 1
+merged = 0
+
+# Commentout = visualmode - ?
+[[plugins]]
+repo = 'tomtom/tcomment_vim'
+hook_add = '''
+    vnoremap ? :'<,'>TComment<CR>
+'''
+
+[[plugins]]
+repo = 'luochen1990/rainbow'
+hook_add = '''
+        let g:rainbow_active = 1
+'''
+
+# Sidemenu
+[[plugins]]
+repo = 'preservim/nerdtree'
+depends = ['Xuyuanp/nerdtree-git-plugin', 'ryanoasis/vim-devicons']
+hook_add = '''
+	autocmd StdinReadPre * let s:std_in=1
+	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+	cnoremap nt! NERDTree
+'''
+
+[[plugins]]
+repo = 'Xuyuanp/nerdtree-git-plugin'
+
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+
+# git
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+        set signcolumn=yes
+        let g:gitgutter_async = 1
+        let g:gitgutter_sign_modified = 'rw'
+        highlight GitGutterAdd ctermfg=green
+        highlight GitGutterChange ctermfg=yellow
+        highlight GitGutterDelete ctermfg=red
+        highlight GitGutterChangeDelete ctermfg=yellow
+'''
+
+# indent
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+hook_add = '''
+        let g:indent_guides_enable_on_vim_startup = 1
+'''
+
+# StatusLine
+[[plgins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+    let g:lightline = { 'colorscheme': 'wombat' }
+    set laststatus=2
+    set noshowmode
+'''
+
+# MultiCursor ctrl-n
+[[plugins]]
+repo = 'terryma/vim-multiple-cursors'
+
+# My Snippet
+[[plugins]]
+repo = 'no1fushi/mysnippets'
+hook_add = '''
+    vnoremap ? :'<,'>TComment<CR>
+'''
+
+
+

@@ -88,13 +88,12 @@ LC_ALL=C
 # ----------- My alias sets -----------
 
 # Editor
-alias ed='vim'
-alias edit='vim'
-alias vi='vim'
+alias ed='nvim'
+alias edit='nvim'
+alias vi='nvim'
+alias vim='nvim'
 alias emacs='emacs -nw'
 alias nano='nano -k -w -i -S'
-VIMRUNTIME=`vim -e -T dumb --cmd 'exe "set t_cm=\<C-M>"|echo $VIMRUNTIME|quit' | tr -d '\015' `
-alias vless='${VIMRUNTIME}/macros/less.sh'
 # Apt
 alias au='sudo apt update -y'
 alias ag='sudo apt upgrade -y'
@@ -169,15 +168,28 @@ alias fc='ls -F |grep -v / |wc -l'
 alias untar='tar -zxvf'
 alias ts='sudo timedatectl set-timezone Asia/Tokyo && sudo ntpdate -v ntp.jst.mfeed.ad.jp'
 alias tsnict='sudo timedatectl set-timezone Asia/Tokyo && sudo ntpdate -v ntp.nict.jp'
+
 alias cm='sudo sh -c "echo 3 >'/proc/sys/vm/drop_caches' && swapoff -a && swapon -a"'
 
+# Path
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(thefuck --alias)"
+
 # Func
-function wether() {
-	curl -H "Accept-Language: ja" wttr.in/$1
+function forcast() {
+	curl -H "Accept-Language: ja" wttr.in/$1 | less
 }
 
-function wetheren() {
-	curl -H "Accept-Language: en" wttr.in/$1
+function forcasten() {
+	curl -H "Accept-Language: en" wttr.in/$1 | less
+}
+
+function weather() {
+	ansiweather -l tokyo
 }
 
 function mkdd() {
@@ -192,18 +204,12 @@ function sc() {
 	grep -E $1 -rl $2
 }
 
-# Path
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval $(thefuck --alias)
-
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 . "$HOME/.cargo/env"
+
 
 # fnm
 export PATH=/home/fushi/.fnm:$PATH
@@ -222,4 +228,3 @@ __fnmcd() {
 
 alias cd=__fnmcd
 __fnm_use_if_file_found
-
