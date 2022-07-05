@@ -1,18 +1,14 @@
-# ColorScheme
+## ColorScheme
 [[plugins]]
-repo = 'tomasr/molokai'
+repo = 'morhetz/gruvbox'
 hook_add = '''
-	colorscheme molokai
-	autocmd Colorscheme * highlight FullWidthSpace ctermbg=white
-	autocmd VimEnter * match FullWidthSpace /　/
-
+	au MyAutoCmd VimEnter * nested colorscheme gruvbox
 	set t_Co=256
 	syntax enable
 '''
 
 # LSP
 [[plugins]]
-repo = 'neoclide/coc.nvim'
 rev = 'release'
 on_i = 1
 merged = 0
@@ -85,6 +81,4 @@ repo = 'no1fushi/mysnippets'
 hook_add = '''
     vnoremap ? :'<,'>TComment<CR>
 '''
-
-
 
