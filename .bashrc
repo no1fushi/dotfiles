@@ -92,7 +92,7 @@ alias ed='nvim'
 alias edit='nvim'
 alias vi='nvim'
 alias vim='nvim'
-alias emacs='emacs -nw'
+alias emacs='nvim'
 alias nano='nano -k -w -i -S'
 # Apt
 alias au='sudo apt update -y'
