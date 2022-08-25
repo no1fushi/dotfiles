@@ -37,6 +37,7 @@ set hlsearch
 
 " style
 set number
+set relativenumber
 set cursorline
 set ruler
 set showmatch

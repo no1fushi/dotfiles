@@ -36,6 +36,7 @@ set hlsearch
 
 " style
 set number
+set relativenumber
 set cursorline
 set ruler
 set showmatch
@@ -127,6 +128,7 @@ call dein#add('scrooloose/nerdtree')
 call dein#add('terryma/vim-multiple-cursors')
 call dein#add('tomtom/tcomment_vim')
 call dein#add('tpope/vim-surround')
+call dein#add('andymass/vim-matchup')
 
 " Search
 call dein#add('thinca/vim-visualstar')
