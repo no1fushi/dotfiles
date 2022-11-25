@@ -166,6 +166,7 @@ alias umnt='sudo umount'
 alias fn='cat /dev/null > '
 alias fc='ls -F |grep -v / |wc -l'
 alias untar='tar -zxvf'
+alias path='echo $PATH | tr ":" "\n"'
 alias ts='sudo timedatectl set-timezone Asia/Tokyo && sudo ntpdate -v ntp.jst.mfeed.ad.jp'
 alias tsnict='sudo timedatectl set-timezone Asia/Tokyo && sudo ntpdate -v ntp.nict.jp'
 
