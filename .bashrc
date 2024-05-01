@@ -113,11 +113,13 @@ alias gb='git branch'
 alias gba='git branch -a'
 alias gbd='git branch -d'
 alias gps='git push'
+alias gpsr='git push --set-upstream origin'
 alias gpl='git pull'
 alias gl='git log'
 alias gr='git reset'
 alias grh='git reset --hard'
 alias gra='git remote add origin'
+alias gbrd='git pull origin develop && git branch --merged | grep -v 'develop' | xargs git branch -d'
 # File
 alias bashrc='source ~/.bashrc'
 alias bashpf='source ~/.bash_profile'
@@ -169,7 +171,6 @@ alias untar='tar -zxvf'
 alias path='echo $PATH | tr ":" "\n"'
 alias ts='sudo timedatectl set-timezone Asia/Tokyo && sudo ntpdate -v ntp.jst.mfeed.ad.jp'
 alias tsnict='sudo timedatectl set-timezone Asia/Tokyo && sudo ntpdate -v ntp.nict.jp'
-
 alias cm='sudo sh -c "echo 3 >'/proc/sys/vm/drop_caches' && swapoff -a && swapon -a"'
 
 # Path
@@ -179,6 +180,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(thefuck --alias)"
+alias fuck='$(thefuck $(fc -ln -1))'
 
 # Func
 function forcast() {
@@ -205,27 +207,26 @@ function sc() {
 	grep -E $1 -rl $2
 }
 
+. "$HOME/.cargo/env"
+
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+export DISPLAY=$(route | grep default | awk '{print $3; exit;}'):0.0
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-. "$HOME/.cargo/env"
+NVMRC_PATH=".nvmrc"
+ if [[ -a "$NVMRC_FILE" ]]; then
+	nvm use
+ fi
 
+export GTK_IM_MODULE=fcitx5
+export QT_IM_MODULE=fcitx5
+export XMODIFIERS=@im=fcitx5
+export INPUT_METHOD=fcitx5
+export DefaultIMModule=fcitx5
+if [ $SHLVL = 1 ] ; then
+  (fcitx5 --disable=wayland -d --verbose '*'=0 &)
+fi
 
-# fnm
-export PATH=/home/fushi/.fnm:$PATH
-eval "`fnm env`"
-
-__fnm_use_if_file_found() {
-    if [[ -f .node-version || -f .nvmrc ]]; then
-        fnm use
-    fi
-}
-
-__fnmcd() {
-    \cd "$@" || return $?
-    __fnm_use_if_file_found
-}
-
-alias cd=__fnmcd
-__fnm_use_if_file_found
